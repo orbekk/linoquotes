@@ -41,7 +41,6 @@
     <mkdir dir="${war.dir}/WEB-INF"/>
     <copy todir="${war.dir}">
       <fileset dir="html">
-        <exclude name="**/.git/**"/>
         <exclude name="**/.svn/**"/>
         <exclude name="**/*~"/>
       </fileset>
@@ -67,8 +66,12 @@
       <classpath>
         <fileset dir="${appengine.sdk}/lib/user">
           <include name="*.jar"/>
+          <include name="orm/*.jar"/>
         </fileset>
         <fileset dir="${appengine.sdk}/lib/shared">
+          <include name="*.jar"/>
+        </fileset>
+        <fileset dir="${war.dir}/WEB-INF/lib">
           <include name="*.jar"/>
         </fileset>
       </classpath>
