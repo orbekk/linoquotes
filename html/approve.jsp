@@ -26,11 +26,11 @@ if (lq.UserUtil.isAuthenticated()) {
             try {
                 Long id = Long.parseLong(request.getParameter("id"));
                 if (action.equals("approve")) {
-                  lq.QuoteUtils.approveQuote(id);
+                  lq.QuoteUtil.approveQuote(id);
                   out.println("Godkjente quote #" + id);
                 }
                 else {
-                  lq.QuoteUtils.rejectQuote(id);
+                  lq.QuoteUtil.rejectQuote(id);
                   out.println("Avviste quote #" + id);
                 }
             }
@@ -44,7 +44,7 @@ if (lq.UserUtil.isAuthenticated()) {
         out.println("<p><p>");
     }
 
-    List<lq.Quote> pendingQuotes = lq.QuoteUtils.getQuotesPendingApproval();
+    List<lq.Quote> pendingQuotes = lq.QuoteUtil.getQuotesPendingApproval();
 
     for (lq.Quote quote : pendingQuotes) {
         String nick = lq.Strings.escape(quote.getAuthor());

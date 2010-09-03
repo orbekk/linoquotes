@@ -52,15 +52,15 @@ String order = request.getParameter("order");
 List<lq.Quote> quotes;
 
 if (order == null) {
-    quotes = lq.QuoteUtils.getQuotesOrderedByIdDesc();
+    quotes = lq.QuoteUtil.getQuotesOrderedByIdDesc();
 } else if(order.equals("id")) {
-    quotes = lq.QuoteUtils.getQuotesOrderedByIdDesc();
+    quotes = lq.QuoteUtil.getQuotesOrderedByIdDesc();
 } else if(order.equals("score")) {
-    quotes = lq.QuoteUtils.getQuotesOrderedByScoreDesc();
+    quotes = lq.QuoteUtil.getQuotesOrderedByScoreDesc();
 } else if(order.equals("date")) {
-    quotes = lq.QuoteUtils.getQuotesOrderedByDateDesc();
+    quotes = lq.QuoteUtil.getQuotesOrderedByDateDesc();
 } else {
-    quotes = lq.QuoteUtils.getQuotesOrderedByIdDesc();
+    quotes = lq.QuoteUtil.getQuotesOrderedByIdDesc();
 }
 
 for (lq.Quote quote : quotes) {

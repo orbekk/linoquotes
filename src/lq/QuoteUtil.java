@@ -6,7 +6,7 @@ import java.util.Comparator;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-public class QuoteUtils {
+public class QuoteUtil {
     public static List<Quote> getQuotes() {
         PersistenceManager pm = PMF.get().getPersistenceManager(); 
         try {
