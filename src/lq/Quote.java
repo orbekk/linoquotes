@@ -51,6 +51,14 @@ public class Quote {
         this.timestamp = new Date();
     }
 
+    public Double getScore() {
+        Double score = 0.0;
+        for (Vote vote : getVotes()) {
+            score = score + vote.getRating() / getVotes().size();
+        }
+        return score;
+    }
+
     public Key getKey() { return key; }
     public Long getId() { return id; }
     public Date getTimestamp() { return timestamp; }

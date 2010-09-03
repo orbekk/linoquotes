@@ -3,6 +3,7 @@ package lq;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.HashMap;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,13 +23,13 @@ import java.util.logging.Logger;
 
 public class ImportQuotes extends HttpServlet {
     private static final Logger logger = Logger.getLogger(ImportQuotes.class.getName());
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    private static final SimpleDateFormat timestampFormat =
-        new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    // hacks....
+    private HashMap<Long, Quote> quoteCache;
 
+    @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
         throws IOException {
-
+        quoteCache = new HashMap<Long, Quote>();
         String path = "db-dump.xml";
 
         resp.setContentType("text/plain");
@@ -45,20 +46,40 @@ public class ImportQuotes extends HttpServlet {
                     "//table_data[@name='votes']/*");
 
             List<Quote> quotes = importQuotes(quoteRows);
-            List<Vote> votes = importVotes(quotes, voteRows);
+            List<Vote> votes = importVotes(voteRows);
 
             PersistenceManager pm = PMF.get().getPersistenceManager();
 
             try {
-                pm.makePersistentAll(quotes); 
-                pm.makePersistentAll(votes);
+                String importIdString = req.getParameter("importId");
+                if (importIdString ==  null) {
+                    uploadInChunks(pm, votes, 100);
+                    uploadInChunks(pm, quotes, 100);
+                    resp.getWriter().println("Import finished.");
+                }
+                else {
+                    int importId = Integer.parseInt(importIdString);
+                    pm.makePersistent(quotes.get(importId));
+                    resp.getWriter().println("There are " + quotes.size() +
+                            " quotes in the old db.");
+                    resp.getWriter().println("Quote " + importId + " imported.");
+                }
             }
             finally {
                 pm.close();
             }
         } catch (Exception e) {
-            resp.getWriter().println("Failed to parse xml: " + e.toString());
-            e.printStackTrace();
+            e.printStackTrace(resp.getWriter());
+        }
+    }
+
+    private void uploadInChunks(PersistenceManager pm, List<?> objects, int chunkSize) {
+        for (int i = 0; i < objects.size(); i += chunkSize) {
+            List<Object> chunk = new ArrayList<Object>();
+            for (int j = i; j < Math.min(objects.size(), i + chunkSize); j++) {
+                chunk.add(objects.get(j));
+            }
+            pm.makePersistentAll(chunk);
         }
     }
 
@@ -74,7 +95,9 @@ public class ImportQuotes extends HttpServlet {
     }
 
     private Quote importQuote(Element quoteRow) throws Exception {
-        Long id = Long.parseLong(getChildWithName("id", quoteRow));
+        Long oldId = Long.parseLong(getChildWithName("id", quoteRow));
+
+        Long id = Long.parseLong(getChildWithName("number", quoteRow));
 
         String approvedString = getChildWithName("approved", quoteRow);
         Boolean approved = approvedString.equals("1") ? true : false; 
@@ -82,12 +105,12 @@ public class ImportQuotes extends HttpServlet {
         String name = getChildWithName("name", quoteRow);
 
         String dateString = getChildWithName("date", quoteRow);
-        Date date = dateFormat.parse(dateString);
+        Date date = DateUtil.dateFormat.parse(dateString);
 
         String content = getChildWithName("text", quoteRow);
 
         String timeString = getChildWithName("time", quoteRow);
-        Date timestamp = timestampFormat.parse(timeString);
+        Date timestamp = DateUtil.timestampFormat.parse(timeString);
 
         String ip = getChildWithName("ip", quoteRow);
 
@@ -95,15 +118,17 @@ public class ImportQuotes extends HttpServlet {
         quote.setId(id);
         quote.setTimestamp(timestamp);
         quote.setApproved(approved);
+
+        quoteCache.put(oldId, quote);
         return quote;
     }
 
-    private List<Vote> importVotes(List<Quote> quotes, List voteRows) throws Exception {
+    private List<Vote> importVotes(List voteRows) throws Exception {
         List<Vote> votes = new ArrayList<Vote>();
         for (Object row : voteRows) {
             @SuppressWarnings("unchecked")
             Element elem = (Element) row;
-            Vote vote = importVote(elem, quotes);
+            Vote vote = importVote(elem);
             if (vote != null) {
                 votes.add(vote);
             }
@@ -112,15 +137,15 @@ public class ImportQuotes extends HttpServlet {
         return votes;
     }
 
-    private Vote importVote(Element voteRow, List<Quote> quotes) throws Exception {
+    private Vote importVote(Element voteRow) throws Exception {
         Long quoteId = Long.parseLong(getChildWithName("id", voteRow));
-        Quote quote = getQuoteWithId(quotes, quoteId);
+        Quote quote = quoteCache.get(quoteId);
         if (quote == null) {
             logger.warning("Could not find quote with id " + quoteId);
             return null;
         }
         Long rating = Long.parseLong(getChildWithName("vote", voteRow));
-        Date timestamp = timestampFormat.parse(getChildWithName("time", voteRow));
+        Date timestamp = lq.DateUtil.timestampFormat.parse(getChildWithName("time", voteRow));
         String ip = getChildWithName("ip", voteRow);
 
         Vote vote = new Vote(rating, ip); 
@@ -133,15 +158,6 @@ public class ImportQuotes extends HttpServlet {
         String xpath = "field[@name='" + name + "']";
         Element child = (Element) XPath.selectSingleNode(parent, xpath);
         return child.getValue();
-    }
-
-    private Quote getQuoteWithId(List<Quote> quotes, Long id) {
-        for (Quote quote : quotes) {
-            if (quote.getId().equals(id)) {
-                return quote;
-            }
-        }
-        throw new RuntimeException("Could not find quote.");
     }
 }
 

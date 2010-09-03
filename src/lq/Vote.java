@@ -37,9 +37,11 @@ public class Vote {
     public Quote getQuote() { return quote; }
     public Date getTimestamp() { return timestamp; }
     public String getIp() { return ip; }
+    public Long getRating() { return rating; }
 
     public void setKey(Key key) { this.key = key; }
     public void setQuote(Quote quote) { this.quote = quote; }
     public void setTimestamp(Date timestamp) { this.timestamp = timestamp; }
     public void setIp(String ip) { this.ip = ip; }
+    public void setRating(Long rating) { this.rating = rating; }
 }
