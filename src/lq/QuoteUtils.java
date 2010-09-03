@@ -10,7 +10,9 @@ public class QuoteUtils {
     public static List<Quote> getQuotes() {
         PersistenceManager pm = PMF.get().getPersistenceManager(); 
         try {
-            List<Quote> quotes = (List<Quote>) pm.newQuery(Quote.class).execute();
+            Query quoteQuery = pm.newQuery(Quote.class);
+            quoteQuery.setFilter("approved == true");
+            List<Quote> quotes = (List<Quote>) quoteQuery.execute();
             pm.retrieveAll(quotes);
             return quotes;
         }
