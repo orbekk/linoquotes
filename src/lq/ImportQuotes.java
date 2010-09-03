@@ -53,7 +53,7 @@ public class ImportQuotes extends HttpServlet {
             try {
                 String importIdString = req.getParameter("importId");
                 if (importIdString ==  null) {
-                    uploadInChunks(pm, votes, 100);
+                    // uploadInChunks(pm, votes, 100);
                     uploadInChunks(pm, quotes, 100);
                     resp.getWriter().println("Import finished.");
                 }
