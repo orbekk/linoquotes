@@ -5,32 +5,6 @@
    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
    version="2.5"> 
   <display-name>Quotes fra #linux.no på freenode</display-name>
-  
-  <!--
-  <servlet>
-    <servlet-name>linoquotes</servlet-name>
-    <servlet-class>lq.ViewQuotes</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>linoquotes</servlet-name>
-    <url-pattern>/quotes</url-pattern>
-  </servlet-mapping>
-  -->
-
-  <servlet>
-    <servlet-name>redirect-to-quotes</servlet-name>
-    <servlet-class>lq.Redirect</servlet-class>
-    <init-param>
-      <param-name>destination</param-name>
-      <param-value>/quotes</param-value>
-    </init-param>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>redirect-to-quotes</servlet-name>
-    <url-pattern>/</url-pattern>
-  </servlet-mapping>
 
   <servlet>
     <servlet-name>importquotes</servlet-name>
@@ -41,4 +15,19 @@
     <servlet-name>importquotes</servlet-name>
     <url-pattern>/import</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>dropdb</servlet-name>
+    <servlet-class>lq.DropData</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>dropdb</servlet-name>
+    <url-pattern>/dropdb</url-pattern>
+  </servlet-mapping>
+
+  <welcome-file-list>
+    <welcome-file>quotes.jsp</welcome-file>
+  </welcome-file-list>
+
 </web-app>
