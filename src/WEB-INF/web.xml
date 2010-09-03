@@ -36,6 +36,16 @@
     <url-pattern>/dropdb</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>new_admin</servlet-name>
+    <servlet-class>lq.AddAdmin</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>new_admin</servlet-name>
+    <url-pattern>/new_admin</url-pattern>
+  </servlet-mapping>
+
   <welcome-file-list>
     <welcome-file>quotes.jsp</welcome-file>
   </welcome-file-list>

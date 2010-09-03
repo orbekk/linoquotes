@@ -22,6 +22,11 @@ public class DropData extends HttpServlet {
             for (Vote v : votes) {
                 pm.deletePersistent(v);
             }
+            List<Administrator> admins =
+                    (List<Administrator>) pm.newQuery(Administrator.class).execute();
+            for (Administrator a : admins) {
+                pm.deletePersistent(a);
+            }
         }
         finally {
             pm.close();
