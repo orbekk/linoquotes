@@ -21,6 +21,27 @@ public class QuoteUtil {
         }
     }
 
+    public static Quote getQuoteWithId(Long id) {
+        PersistenceManager pm = PMF.get().getPersistenceManager(); 
+        try {
+            Query quoteQuery = pm.newQuery(Quote.class);
+            quoteQuery.setFilter("id == idParam");
+            quoteQuery.declareParameters("Long idParam");
+            List<Quote> quotes = (List<Quote>) quoteQuery.execute(id);
+            if (quotes.isEmpty()) {
+                return null;
+            }
+            else {
+                Quote result = quotes.get(0);
+                pm.retrieve(result);
+                return result;
+            }
+        }
+        finally {
+            pm.close();
+        }
+    }
+
     public static List<Quote> getQuotesPendingApproval() {
         PersistenceManager pm = PMF.get().getPersistenceManager(); 
         try {

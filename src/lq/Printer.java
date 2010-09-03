@@ -12,7 +12,7 @@ public class Printer {
 
     public void printQuote(Quote quote) {
         out.println("<br>");
-        out.println("<a href=\"vote.jsp?id=" + quote.getId() + "\">" +
+        out.println("<a href=\"/view_quote?id=" + quote.getId() + "\">" +
             "#" + quote.getId() +
             "</a>"+
             ", lagt til av " + Strings.escape(quote.getAuthor()) + "<br>");

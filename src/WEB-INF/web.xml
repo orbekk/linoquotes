@@ -46,6 +46,16 @@
     <url-pattern>/new_admin</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>view_quote</servlet-name>
+    <servlet-class>lq.ViewQuote</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>view_quote</servlet-name>
+    <url-pattern>/view_quote</url-pattern>
+  </servlet-mapping>
+
   <welcome-file-list>
     <welcome-file>quotes.jsp</welcome-file>
   </welcome-file-list>
