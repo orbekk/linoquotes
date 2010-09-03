@@ -17,7 +17,7 @@ public class AddAdmin extends HttpServlet {
             throws IOException {
         resp.setContentType("text/html");
         String email = req.getParameter("email");
-        if (UserUtil.isAuthenticated()) {
+        if (UserUtil.isAuthenticated() || UserUtil.hasZeroUsers()) {
             if (addUser(resp, email)) {
                 resp.getWriter().println(Strings.escape(email) + " kan nå moderere quotes.");
             }

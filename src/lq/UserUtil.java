@@ -16,7 +16,7 @@ public class UserUtil {
             return null;
         }
         else {
-            if (hasZeroUsers() || userExists(user.getEmail())) {
+            if (userExists(user.getEmail())) {
               return user.getEmail();
             }
             else {
@@ -39,7 +39,7 @@ public class UserUtil {
         return userService.createLogoutURL(requestUrl);
     }
 
-    private static final boolean hasZeroUsers() {
+    public static final boolean hasZeroUsers() {
         PersistenceManager pm = PMF.get().getPersistenceManager();
         try {
             Query query = pm.newQuery(Administrator.class);
