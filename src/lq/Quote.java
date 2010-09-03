@@ -12,12 +12,9 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-@PersistenceCapable
+@PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Quote {
     @PrimaryKey
-    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-    private Key key;
-
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
     private Long id;
 
@@ -60,7 +57,6 @@ public class Quote {
         return score;
     }
 
-    public Key getKey() { return key; }
     public Long getId() { return id; }
     public Date getTimestamp() { return timestamp; }
     public Boolean getApproved() { return approved; }
@@ -70,7 +66,6 @@ public class Quote {
     public String getIp() { return ip; }
     public List<Vote> getVotes() { return votes; }
 
-    public void setKey(Key key) { this.key = key; }
     public void setId(Long id) { this.id = id; }
     public void setTimestamp(Date timestamp) { this.timestamp = timestamp; }
     public void setApproved(Boolean approved) { this.approved = approved; }
