@@ -62,7 +62,7 @@ public class AddQuote extends HttpServlet {
 
   public final String successString = 
           "<center>\n" +
-          "<img src=\"roflcopter.gif\" /><p />\n" +
+          "<img src=\"/roflcopter.gif\" /><p />\n" +
           "<pre> Takk, quoten venter nå på godkjenning.</pre>\n" +
           "<pre> <a href=\"/quotes.jsp\">Tilbake til quotes</a> </pre>\n" +
           "</center>\n";
