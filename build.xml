@@ -1,6 +1,6 @@
 <!-- This is a template Ant file for a very basic Google AppEngine project -->
 
-<project name="myproject" default="war">
+<project name="linoquotes" default="war">
 
   <property file="build.properties"/>
   <property name="appengine.sdk" location="../.."/>
@@ -36,6 +36,17 @@
   <!-- Change if you like e.g. "war" better than "www" for the output -->
   <property name="war.dir" location="www"/>
 
+  <target name="copyjars"
+      description="Copies the App Engine JARs to the WAR.">
+    <copy
+        todir="${war.dir}/WEB-INF/lib"
+        flatten="true">
+      <fileset dir="${appengine.sdk}/lib/user">
+        <include name="**/*.jar" />
+      </fileset>
+    </copy>
+  </target>
+
   <target name="war" depends="enhance" 
           description="Assemble the application directory">
     <mkdir dir="${war.dir}/WEB-INF"/>
@@ -58,9 +69,14 @@
     <enhance_war war="${war.dir}"/>
   </target>
 
-  <target name="compile"
+  <target name="compile" depends="copyjars"
           description="Compile the application servlet code">
     <mkdir dir="${war.dir}/WEB-INF/classes"/>
+    <copy todir="${war.dir}/WEB-INF/classes">
+        <fileset dir="src">
+            <exclude name="**/*.java" />
+        </fileset>
+    </copy>
     <mkdir dir="${war.dir}/WEB-INF/lib"/>
     <javac srcdir="src" destdir="${war.dir}/WEB-INF/classes">
       <classpath>
