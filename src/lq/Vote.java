@@ -1,5 +1,6 @@
 package lq;
 
+import com.google.appengine.api.datastore.Key;
 import java.util.Date;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
@@ -11,10 +12,13 @@ import javax.jdo.annotations.PrimaryKey;
 public class Vote {
     @PrimaryKey
     @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-    private Long id;
+    private Key key;
 
     @Persistent
     private Quote quote;
+
+    @Persistent
+    private Long rating;
 
     @Persistent
     private Date timestamp;
@@ -22,18 +26,19 @@ public class Vote {
     @Persistent
     private String ip;
 
-    public Vote(Quote quote, String ip) {
+    public Vote(Long rating, String ip) {
         this.quote = quote;
         this.ip = ip;
+        this.rating = rating;
         timestamp = new Date();
     }
 
-    public Long getId() { return id; }
+    public Key getKey() { return key; }
     public Quote getQuote() { return quote; }
     public Date getTimestamp() { return timestamp; }
     public String getIp() { return ip; }
 
-    public void setId(Long id) { this.id = id; }
+    public void setKey(Key key) { this.key = key; }
     public void setQuote(Quote quote) { this.quote = quote; }
     public void setTimestamp(Date timestamp) { this.timestamp = timestamp; }
     public void setIp(String ip) { this.ip = ip; }
