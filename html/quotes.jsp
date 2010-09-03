@@ -63,31 +63,9 @@ if (order == null) {
     quotes = lq.QuoteUtil.getQuotesOrderedByIdDesc();
 }
 
+lq.Printer printer = new lq.Printer(out); 
 for (lq.Quote quote : quotes) {
-    out.println("<br>");
-    out.println("<a href=\"vote.jsp?id=" + quote.getId() + "\">" +
-        "#" + quote.getId() +
-        "</a>"+
-        ", lagt til av " + lq.Strings.escape(quote.getAuthor()) + "<br>");
-
-    String score = quote.getScore().toString();
-    String date = lq.DateUtil.dateFormat.format(quote.getQuoteDate());
-    out.println("Dato: " + date + ", Score: ");
-    out.println("<span id=\"v" + quote.getId() + "\">");
-    out.println((score==null?"-":(score+ " (fra " + quote.getVotes().size() +")")));
-    out.println("<br> Vote: <font size=\"-1\">");
-    for(int nv=1; nv<=5; nv++) 
-        out.println("<a href=\"javascript:ajaxvote(" + quote.getId() + ","+nv+")\">"+nv+"</a> ");
-    out.println("</font> </span>");
-    
-    out.println("<br> <br>");
-    out.println();
-    String content = lq.Strings.escape(quote.getContent());
-    out.println(content
-            .replaceAll("(http://[^ \r\n]+)","<a href=\"$1\">$1</a>")
-            .replaceAll("\n","<br>\n"));
-    out.println("");
-    out.println("<hr>");
+    printer.printQuote(quote);
 }
 
 %>
