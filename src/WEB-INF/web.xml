@@ -6,6 +6,7 @@
    version="2.5"> 
   <display-name>Quotes fra #linux.no på freenode</display-name>
   
+  <!--
   <servlet>
     <servlet-name>linoquotes</servlet-name>
     <servlet-class>lq.ViewQuotes</servlet-class>
@@ -15,6 +16,7 @@
     <servlet-name>linoquotes</servlet-name>
     <url-pattern>/quotes</url-pattern>
   </servlet-mapping>
+  -->
 
   <servlet>
     <servlet-name>redirect-to-quotes</servlet-name>
