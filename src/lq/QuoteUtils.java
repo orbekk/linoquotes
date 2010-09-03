@@ -21,6 +21,20 @@ public class QuoteUtils {
         }
     }
 
+    public static List<Quote> getQuotesPendingApproval() {
+        PersistenceManager pm = PMF.get().getPersistenceManager(); 
+        try {
+            Query quoteQuery = pm.newQuery(Quote.class);
+            quoteQuery.setFilter("approved == null");
+            List<Quote> quotes = (List<Quote>) quoteQuery.execute();
+            pm.retrieveAll(quotes);
+            return quotes;
+        }
+        finally {
+            pm.close();
+        }
+    }
+
     public static List<Quote> getQuotesOrderedByIdDesc() {
         List<Quote> quotes = getQuotes();
         Collections.sort(quotes,
@@ -52,5 +66,41 @@ public class QuoteUtils {
                     }
         });
         return quotes;
+    }
+
+    public static void approveQuote(Long id) {
+        PersistenceManager pm = PMF.get().getPersistenceManager(); 
+        try {
+            Query quoteQuery = pm.newQuery(Quote.class);
+            quoteQuery.setFilter("id == idParam");
+            quoteQuery.declareParameters("Long idParam");
+            List<Quote> quotes = (List<Quote>) quoteQuery.execute(id);
+
+            for (Quote quote : quotes) {
+                quote.setApproved(true);
+                pm.makePersistent(quote);
+            }
+        }
+        finally {
+            pm.close();
+        }
+    }
+
+    public static void rejectQuote(Long id) {
+        PersistenceManager pm = PMF.get().getPersistenceManager(); 
+        try {
+            Query quoteQuery = pm.newQuery(Quote.class);
+            quoteQuery.setFilter("id == idParam");
+            quoteQuery.declareParameters("Long idParam");
+            List<Quote> quotes = (List<Quote>) quoteQuery.execute(id);
+
+            for (Quote quote : quotes) {
+                quote.setApproved(false);
+                pm.makePersistent(quote);
+            }
+        }
+        finally {
+            pm.close();
+        }
     }
 }
