@@ -1,0 +1,7 @@
+Linoquotes application
+======================
+Runs on appengine.
+
+Dependencies
+------------
+The Java AppEngine SDK.
