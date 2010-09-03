@@ -7,6 +7,9 @@ public class Strings {
             .replaceAll("<","&lt;")
             .replaceAll(">","&gt;")
             .replaceAll("  ","&nbsp;&nbsp;");
+    }
 
+    public static final boolean nullOrEmpty(String str) {
+      return str == null || str.isEmpty();
     }
 }

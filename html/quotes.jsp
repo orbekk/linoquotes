@@ -24,8 +24,7 @@ hr {
                | |  |_|_|_| |_|\__,_/_/\_(_)_| |_|\___/ 
              -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
                    Quotes fra #linux.no på freenode
-                  Klikk <a href="submit.jsp">her</a> for å legge til en quote
-                    eller <a href="quotevote">her</a> for raskere stemming
+                  Klikk <a href="add.jsp">her</a> for å legge til en quote
 
                     Sortér etter <a href="quotes.jsp?order=date">dato</a> | <a href="quotes.jsp?order=score">score</a> | <a href="quotes.jsp?order=number">id</a>
 </pre>

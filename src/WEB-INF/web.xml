@@ -7,6 +7,16 @@
   <display-name>Quotes fra #linux.no på freenode</display-name>
 
   <servlet>
+    <servlet-name>add_quote</servlet-name>
+    <servlet-class>lq.AddQuote</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>add_quote</servlet-name>
+    <url-pattern>/post/add</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
     <servlet-name>importquotes</servlet-name>
     <servlet-class>lq.ImportQuotes</servlet-class>
   </servlet>
