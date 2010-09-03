@@ -97,8 +97,7 @@ for (lq.Quote quote : quotes) {
 <br>See <a href="http://github.com/orbekk/linoquotes">http://github.com/orbekk/linoquotes</a>
   for details.</p>
 <p>The quotes on this page are copyright their respective owners and submitters.</p>
-<img src="http://code.google.com/appengine/images/appengine-noborder-120x30.gif" 
-alt="Powered by Google App Engine" />
+<p>Powered by Google AppEngine.</p>
 </center>
 </body>
 </html>
