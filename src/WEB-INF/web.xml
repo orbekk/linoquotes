@@ -37,16 +37,6 @@
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>dropdb</servlet-name>
-    <servlet-class>lq.DropData</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>dropdb</servlet-name>
-    <url-pattern>/dropdb</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
     <servlet-name>new_admin</servlet-name>
     <servlet-class>lq.AddAdmin</servlet-class>
   </servlet>

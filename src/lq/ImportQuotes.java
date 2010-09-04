@@ -61,7 +61,7 @@ public class ImportQuotes extends HttpServlet {
                     Quote q = quotes.get(importId);
                     pm.makePersistent(q);
                     for (Vote v : votes) {
-                        if (v.getQuoteId() == q.getId()) {
+                        if (v.getQuoteId().equals(q.getId())) {
                             pm.makePersistent(v);
                         }
                     }
