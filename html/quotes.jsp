@@ -26,7 +26,7 @@ hr {
                    Quotes fra #linux.no på freenode
                   Klikk <a href="add.jsp">her</a> for å legge til en quote
 
-                    Sortér etter <a href="quotes.jsp?order=date">quote-dato</a> | <a href="quotes.jsp?order=score">score</a> | <a href="quotes.jsp?order=timestamp">timestamp</a>
+              Sortér etter <a href="quotes.jsp?order=date">quote-dato</a> | <a href="quotes.jsp?order=score">score</a> | <a href="quotes.jsp?order=timestamp">timestamp</a>
 </pre>
 <hr>
 

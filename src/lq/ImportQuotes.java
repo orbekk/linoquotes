@@ -59,7 +59,13 @@ public class ImportQuotes extends HttpServlet {
                 }
                 else {
                     int importId = Integer.parseInt(importIdString);
-                    pm.makePersistent(quotes.get(importId));
+                    Quote q = quotes.get(importId);
+                    pm.makePersistent(q);
+                    for (Vote v : votes) {
+                        if (v.getQuoteId() == q.getId()) {
+                            pm.makePersistent(v);
+                        }
+                    }
                     resp.getWriter().println("There are " + quotes.size() +
                             " quotes in the old db.");
                     resp.getWriter().println("Quote " + importId + " imported.");

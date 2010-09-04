@@ -1,7 +1,7 @@
 package lq;
 
 public class Doubles {
-    public static final int signum(Double d) {
+    public static final int signum(double d) {
         if (d < 0.0) {
             return -1;
         }
