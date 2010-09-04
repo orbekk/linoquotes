@@ -24,7 +24,7 @@ public class Printer {
         out.println(QuoteUtil.formatScore(quote));
         out.println("<br> Vote: <font size=\"-1\">");
         for(int nv=1; nv<=5; nv++) 
-            out.println("<a href=\"javascript:ajaxvote(" + quote.getId() + ","+nv+")\">"+nv+"</a> ");
+            out.println("<a href=\"javascript:vote(" + quote.getId() + ","+nv+")\">"+nv+"</a> ");
         out.println("</font> </span>");
         
         out.println("<br> <br>");

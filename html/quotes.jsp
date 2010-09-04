@@ -33,9 +33,9 @@ hr {
 
 <script>
 
-function ajaxvote(id, value) { 
+function vote(id, value) {
     var http = new XMLHttpRequest();
-    http.open("GET","ajaxvote.jsp?id="+id+"&vote="+value);
+    http.open("GET","/vote?id="+id+"&vote="+value);
     http.onreadystatechange=function() {
         if(http.readyState==4) {
             document.getElementById("v"+id).innerHTML = http.responseText;

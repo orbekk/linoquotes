@@ -17,6 +17,16 @@
   </servlet-mapping>
 
   <servlet>
+    <servlet-name>add_vote</servlet-name>
+    <servlet-class>lq.AddVote</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>add_vote</servlet-name>
+    <url-pattern>/vote</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
     <servlet-name>importquotes</servlet-name>
     <servlet-class>lq.ImportQuotes</servlet-class>
   </servlet>
