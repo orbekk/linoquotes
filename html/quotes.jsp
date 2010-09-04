@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta name="robots" content="noindex, nofollow" />
+<link rel="shortcut icon" href="/favicon.ico" />
 <title>Quotes fra #linux.no på freenode</title>
 <style type="text/css">
 body {font-family: monospace;}
