@@ -27,16 +27,6 @@
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>importquotes</servlet-name>
-    <servlet-class>lq.ImportQuotes</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>importquotes</servlet-name>
-    <url-pattern>/import</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
     <servlet-name>new_admin</servlet-name>
     <servlet-class>lq.AddAdmin</servlet-class>
   </servlet>
