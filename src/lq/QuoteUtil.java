@@ -3,6 +3,7 @@ package lq;
 import java.util.Collections;
 import java.util.List;
 import java.util.Comparator;
+import java.text.DecimalFormat;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
@@ -141,5 +142,13 @@ public class QuoteUtil {
         quote.setNumVotes(quote.getNumVotes() + 1);
         double scorePoints = (vote.getRating()-2.5) * Math.abs((vote.getRating()-2.5));
         quote.setScorePoints(quote.getScorePoints() + scorePoints);
+    }
+
+    public static String formatScore(Quote quote) {
+        if (quote.getNumVotes() == 0) {
+            return "-";
+        }
+        String score = DecimalFormat.getInstance().format(quote.getScore());
+        return (score + " (fra " + quote.getNumVotes() + ")");
     }
 }

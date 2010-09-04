@@ -17,11 +17,11 @@ public class Printer {
             "</a>"+
             ", lagt til av " + Strings.escape(quote.getAuthor()) + "<br>");
 
-        String score = quote.getScore().toString();
         String date = DateUtil.dateFormat.format(quote.getQuoteDate());
         out.println("Dato: " + date + ", Score: ");
+
         out.println("<span id=\"v" + quote.getId() + "\">");
-        out.println((score==null?"-":(score+ " (fra " + quote.getNumVotes() +")")));
+        out.println(QuoteUtil.formatScore(quote));
         out.println("<br> Vote: <font size=\"-1\">");
         for(int nv=1; nv<=5; nv++) 
             out.println("<a href=\"javascript:ajaxvote(" + quote.getId() + ","+nv+")\">"+nv+"</a> ");
