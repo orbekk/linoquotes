@@ -11,9 +11,16 @@ public class Printer {
     }
 
     public void printQuote(Quote quote) {
+        printQuote(quote, null);
+    }
+
+    public void printQuote(Quote quote, Long displayIndex) {
+        if (displayIndex == null) {
+            displayIndex = quote.getId();
+        }
         out.println("<br>");
         out.println("<a href=\"/view_quote?id=" + quote.getId() + "\">" +
-            "#" + quote.getId() +
+            "#" + displayIndex +
             "</a>"+
             ", lagt til av " + Strings.escape(quote.getAuthor()) + "<br>");
 

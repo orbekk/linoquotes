@@ -65,8 +65,10 @@ if (order == null) {
 }
 
 lq.Printer printer = new lq.Printer(out); 
+long displayIndex = quotes.size() + 1;
 for (lq.Quote quote : quotes) {
-    printer.printQuote(quote);
+    printer.printQuote(quote, displayIndex);
+    displayIndex = displayIndex - 1;
 }
 
 %>
