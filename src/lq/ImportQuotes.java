@@ -148,9 +148,10 @@ public class ImportQuotes extends HttpServlet {
         Date timestamp = lq.DateUtil.timestampFormat.parse(getChildWithName("time", voteRow));
         String ip = getChildWithName("ip", voteRow);
 
-        Vote vote = new Vote(rating, ip); 
+        Vote vote = new Vote(quoteId, rating, ip);
         vote.setTimestamp(timestamp);
-        quote.getVotes().add(vote);
+        quote.setSumVotes(quote.getSumVotes() + rating);
+        quote.setNumVotes(quote.getNumVotes() + 1);
         return vote;
     }
 
