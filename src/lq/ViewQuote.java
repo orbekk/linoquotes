@@ -20,6 +20,8 @@ public class ViewQuote extends HttpServlet {
         Quote quote = QuoteUtil.getQuoteWithId(id);
 
         resp.setContentType("text/html");
+        resp.getWriter().println(header);
+        resp.getWriter().println("<pre><hr>");
 
         if (quote != null) {
             Printer printer = new Printer(resp.getWriter());
@@ -29,4 +31,21 @@ public class ViewQuote extends HttpServlet {
             resp.getWriter().println("Quote not found."); 
         }
     }
+
+    private final String header = 
+        "<html> " +
+        "<head> " +
+        "<meta name=\"robots\" content=\"noindex, nofollow\" /> " +
+        "<title>Quotes fra #linux.no på freenode</title> " +
+        "<style type=\"text/css\"> " +
+        "body {font-family: monospace;}" +
+        "hr {" +
+        "    border-style: solid;" +
+        "    border-color: black;" +
+        "    border-width: 1px; " +
+        "}" +
+        "</style> " +
+        "</head> " +
+        "<body bgcolor=\"#FFFFFF\" text=\"#000000\" link=\"#000000\" vlink=\"#000000\"> ";
+
 }

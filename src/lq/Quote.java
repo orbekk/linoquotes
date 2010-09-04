@@ -40,8 +40,8 @@ public class Quote {
     @Persistent
     private Integer numVotes;
 
+    // sum [ (rating-2.5) * abs(rating-2.5) | rating <- votes ]
     @Persistent
-    // sum [ (rating-3) * abs((rating-3)) | rating <- votes ]
     private Double scorePoints;
 
     public Quote(Date quoteDate, String author, String content, String ip) {
