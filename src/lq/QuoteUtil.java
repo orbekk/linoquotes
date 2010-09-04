@@ -89,6 +89,17 @@ public class QuoteUtil {
         return quotes;
     }
 
+    public static List<Quote> getQuotesOrderedByTimestampDesc() {
+        List<Quote> quotes = getQuotes();
+        Collections.sort(quotes,
+                new Comparator<Quote>() {
+                    public int compare(Quote q1, Quote q2) {
+                        return q2.getTimestamp().compareTo(q1.getTimestamp());
+                    }
+        });
+        return quotes;
+    }
+
     public static void approveQuote(Long id) {
         PersistenceManager pm = PMF.get().getPersistenceManager(); 
         try {

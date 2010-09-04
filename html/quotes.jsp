@@ -26,7 +26,7 @@ hr {
                    Quotes fra #linux.no på freenode
                   Klikk <a href="add.jsp">her</a> for å legge til en quote
 
-                    Sortér etter <a href="quotes.jsp?order=date">dato</a> | <a href="quotes.jsp?order=score">score</a> | <a href="quotes.jsp?order=number">id</a>
+                    Sortér etter <a href="quotes.jsp?order=date">quote-dato</a> | <a href="quotes.jsp?order=score">score</a> | <a href="quotes.jsp?order=timestamp">timestamp</a>
 </pre>
 <hr>
 
@@ -52,15 +52,15 @@ String order = request.getParameter("order");
 List<lq.Quote> quotes;
 
 if (order == null) {
-    quotes = lq.QuoteUtil.getQuotesOrderedByIdDesc();
-} else if(order.equals("id")) {
-    quotes = lq.QuoteUtil.getQuotesOrderedByIdDesc();
+    quotes = lq.QuoteUtil.getQuotesOrderedByTimestampDesc();
+} else if(order.equals("timestamp")) {
+    quotes = lq.QuoteUtil.getQuotesOrderedByTimestampDesc();
 } else if(order.equals("score")) {
     quotes = lq.QuoteUtil.getQuotesOrderedByScoreDesc();
 } else if(order.equals("date")) {
     quotes = lq.QuoteUtil.getQuotesOrderedByDateDesc();
 } else {
-    quotes = lq.QuoteUtil.getQuotesOrderedByIdDesc();
+    quotes = lq.QuoteUtil.getQuotesOrderedByTimestampDesc();
 }
 
 lq.Printer printer = new lq.Printer(out); 
