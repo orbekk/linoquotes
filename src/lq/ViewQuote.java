@@ -45,6 +45,7 @@ public class ViewQuote extends HttpServlet {
         "}" +
         "</style> " +
         "</head> " +
+        "<script src=\"/vote.js\"></script>" +
         "<body bgcolor=\"#FFFFFF\" text=\"#000000\" link=\"#000000\" vlink=\"#000000\"> ";
 
 }
