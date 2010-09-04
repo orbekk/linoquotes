@@ -2,7 +2,6 @@ package lq;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
 import java.util.HashMap;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -53,7 +52,7 @@ public class ImportQuotes extends HttpServlet {
             try {
                 String importIdString = req.getParameter("importId");
                 if (importIdString ==  null) {
-                    // uploadInChunks(pm, votes, 100);
+                    uploadInChunks(pm, votes, 100);
                     uploadInChunks(pm, quotes, 100);
                     resp.getWriter().println("Import finished.");
                 }
