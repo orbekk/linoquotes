@@ -150,8 +150,7 @@ public class ImportQuotes extends HttpServlet {
 
         Vote vote = new Vote(quoteId, rating, ip);
         vote.setTimestamp(timestamp);
-        quote.setSumVotes(quote.getSumVotes() + rating);
-        quote.setNumVotes(quote.getNumVotes() + 1);
+        QuoteUtil.addVote(quote, vote);
         return vote;
     }
 

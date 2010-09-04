@@ -72,7 +72,7 @@ public class QuoteUtil {
         Collections.sort(quotes,
                 new Comparator<Quote>() {
                     public int compare(Quote q1, Quote q2) {
-                        throw new RuntimeException("Score ordering not yet implemented");
+                        return Doubles.signum(q2.getScorePoints() - q1.getScorePoints());
                     }
         });
         return quotes;
@@ -123,5 +123,12 @@ public class QuoteUtil {
         finally {
             pm.close();
         }
+    }
+
+    public static void addVote(Quote quote, Vote vote) {
+        quote.setSumVotes(quote.getSumVotes() + vote.getRating());
+        quote.setNumVotes(quote.getNumVotes() + 1);
+        double scorePoints = (vote.getRating()-2.5) * Math.abs((vote.getRating()-2.5));
+        quote.setScorePoints(quote.getScorePoints() + scorePoints);
     }
 }

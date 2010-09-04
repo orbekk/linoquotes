@@ -37,10 +37,14 @@ public class Quote {
     private String ip;
 
     @Persistent
-    private double sumVotes;
+    private Double sumVotes;
 
     @Persistent
-    private int numVotes;
+    private Integer numVotes;
+
+    @Persistent
+    // sum [ (rating-3) * abs((rating-3)) | rating <- votes ]
+    private Double scorePoints;
 
     public Quote(Date quoteDate, String author, String content, String ip) {
         this.quoteDate = quoteDate;
@@ -49,6 +53,7 @@ public class Quote {
         this.ip = ip;
         this.sumVotes = 0.0;
         this.numVotes = 0;
+        this.scorePoints = 0.0;
         this.timestamp = new Date();
     }
 
@@ -64,7 +69,8 @@ public class Quote {
     public String getContent() { return content.getValue(); }
     public String getIp() { return ip; }
     public Double getSumVotes() { return sumVotes; }
-    public int getNumVotes() { return numVotes; }
+    public Integer getNumVotes() { return numVotes; }
+    public Double getScorePoints() { return scorePoints; }
 
     public void setId(Long id) { this.id = id; }
     public void setTimestamp(Date timestamp) { this.timestamp = timestamp; }
@@ -75,4 +81,5 @@ public class Quote {
     public void setIp(String ip) { this.ip = ip; }
     public void setSumVotes(double sumVotes) { this.sumVotes = sumVotes; }
     public void setNumVotes(int numVotes) { this.numVotes = numVotes; }
+    public void setScorePoints(double scorePoints) { this.scorePoints = scorePoints; }
 }
