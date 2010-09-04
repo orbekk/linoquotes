@@ -21,7 +21,6 @@ public class ViewQuote extends HttpServlet {
 
         resp.setContentType("text/html");
         resp.getWriter().println(header);
-        resp.getWriter().println("<pre><hr>");
 
         if (quote != null) {
             Printer printer = new Printer(resp.getWriter());
