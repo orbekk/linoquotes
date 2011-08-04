@@ -13,6 +13,18 @@ hr {
 	border-color: black;
 	border-width: 1px; 
 }
+.ragebutton {
+  	font-family: monospace;
+	text-align: left;
+    text-decoration: underline;
+	color: black;
+	background: none;
+	margin: 0;
+	padding: 0;
+	border: none;
+	cursor: pointer;
+  	-moz-user-select: text;
+}
 </style>
 </head>
 <body bgcolor="#FFFFFF" text="#000000" link="#000000" vlink="#000000">
@@ -61,7 +73,7 @@ for (lq.Quote quote : quotes) {
 %>
 <center>
 <br>
-<p>linoquotes v.2 © 2004-2010 Erlend Hamberg, Vidar Holen, Kjetil Ørbekk, John H. Anthony.
+<p>linoquotes v.2 © 2004-2011 Erlend Hamberg, Vidar Holen, Kjetil Ørbekk, John H. Anthony.
 <br>See <a href="http://github.com/orbekk/linoquotes">http://github.com/orbekk/linoquotes</a>
   for details.</p>
 <p>The quotes on this page are copyright their respective owners and submitters.</p>
