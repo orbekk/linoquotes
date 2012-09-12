@@ -73,7 +73,7 @@ for (lq.Quote quote : quotes) {
 %>
 <center>
 <br>
-<p>linoquotes v.2 © 2004-2011 Erlend Hamberg, Vidar Holen, Kjetil Ørbekk, John H. Anthony.
+<p>linoquotes v.2 © 2004-2012 Erlend Hamberg, Vidar Holen, Kjetil Ørbekk, John H. Anthony.
 <br>See <a href="http://github.com/orbekk/linoquotes">http://github.com/orbekk/linoquotes</a>
   for details.</p>
 <p>The quotes on this page are copyright their respective owners and submitters.</p>
