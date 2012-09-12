@@ -1,4 +1,5 @@
 <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
-  <application>linoquotes</application>
+  <application>linoquotes-hrd</application>
   <version>dev</version>
+  <threadsafe>true</threadsafe>
 </appengine-web-app>
